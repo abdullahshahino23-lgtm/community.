@@ -1,0 +1,799 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#123b35">
+  <meta name="description" content="منصة الجالية المصرية في نجران: خدمات ومجتمع وسكن ووظائف، معاك في الغربة.">
+  <title>الجالية المصرية بنجران — معاك في الغربة</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light;
+      --bg:#f5f6f2; --surface:#fff; --surface2:#f0f3ee; --ink:#17332e; --muted:#6f7d77;
+      --green:#123b35; --green2:#1c5147; --red:#bd4b44; --gold:#c9a65e; --line:#e4e9e2;
+      --shadow:0 14px 40px rgba(21,48,39,.09); --radius:20px; --safe-b:env(safe-area-inset-bottom,0px);
+    }
+    :root[data-theme="dark"] {
+      color-scheme:dark; --bg:#111916; --surface:#19231f; --surface2:#202c27; --ink:#edf2ed;
+      --muted:#a4b2aa; --green:#a9d0bc; --green2:#8fbea7; --red:#ef958c; --gold:#e0bf77;
+      --line:#303e37; --shadow:0 14px 42px rgba(0,0,0,.24);
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--ink);font-family:"Cairo",system-ui,sans-serif;min-height:100vh}
+    button,input,textarea,select{font:inherit}
+    button{cursor:pointer}
+    button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible,a:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+    a{color:var(--green);text-decoration:none}
+    .shell{max-width:1180px;margin:auto;padding:0 20px 110px}
+    .topbar{height:76px;display:flex;align-items:center;justify-content:space-between;gap:14px}
+    .brand{display:flex;align-items:center;gap:11px;min-width:0}
+    .brand-mark{width:47px;height:47px;border-radius:15px;background:var(--green);display:grid;place-items:center;position:relative;overflow:hidden;color:#fff;flex:none}
+    .brand-mark:before{content:"";position:absolute;inset:0 0 auto;height:5px;background:var(--red)}
+    .brand-mark:after{content:"";position:absolute;inset:auto 0 0;height:5px;background:#d8c9a2}
+    .brand-mark b{font-size:22px;color:#e4c87e;position:relative}
+    .brand-name{font-size:15px;line-height:1.35;font-weight:800;white-space:normal}
+    .brand-sub{font-size:11px;color:var(--muted);font-weight:600}
+    .top-actions{display:flex;align-items:center;gap:8px}
+    .icon-btn,.quiet-btn{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:14px;min-width:46px;height:46px;display:grid;place-items:center}
+    .quiet-btn{display:flex;padding:0 13px;gap:8px;font-size:13px;font-weight:700}
+    .icon-btn svg,.quiet-btn svg{width:20px;height:20px}
+    .connection{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:12px;padding:7px 10px;border-radius:99px;background:var(--surface2)}
+    .dot{width:8px;height:8px;border-radius:50%;background:#c69342}
+    .dot.on{background:#3c9b70}.dot.off{background:#bb554d}
+    .hero{position:relative;overflow:hidden;border-radius:28px;background:var(--green);color:#fff;padding:30px 32px;margin:8px 0 23px;box-shadow:var(--shadow);min-height:235px}
+    .hero:before{content:"";position:absolute;width:260px;height:260px;left:-65px;top:-112px;border:1px solid rgba(229,203,139,.25);border-radius:50%;box-shadow:0 0 0 25px rgba(255,255,255,.025),0 0 0 52px rgba(255,255,255,.022)}
+    .hero:after{content:"";position:absolute;inset:auto 0 0;height:5px;background:linear-gradient(90deg,#bd4b44 0 32%,#fff 32% 66%,#bd4b44 66% 100%);opacity:.8}
+    .hero-content{position:relative;z-index:1;max-width:650px}
+    .eyebrow{color:#e4c77d;font-weight:800;font-size:12px;letter-spacing:.02em}
+    .hero h1{font-size:clamp(27px,5vw,42px);line-height:1.26;margin:8px 0 9px;font-weight:800}
+    .hero p{color:#d9e6de;margin:0;line-height:1.8;font-size:14px;max-width:600px}
+    .hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:19px}
+    .btn{border:0;border-radius:14px;padding:11px 17px;min-height:46px;font-weight:800;display:inline-flex;align-items:center;justify-content:center;gap:8px}
+    .btn-primary{background:var(--gold);color:#1e332b}
+    .btn-light{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.23)}
+    .btn-outline{background:var(--surface);color:var(--ink);border:1px solid var(--line)}
+    .btn-danger{background:#a83d39;color:white}
+    .btn-small{min-height:38px;padding:7px 12px;border-radius:11px;font-size:12px}
+    .setup-banner{display:flex;align-items:center;justify-content:space-between;gap:15px;padding:15px 17px;border-radius:17px;background:#fff7e6;color:#57451e;border:1px solid #ead5a7;margin:0 0 24px}
+    :root[data-theme="dark"] .setup-banner{background:#362f1e;color:#ebd69f;border-color:#675a35}
+    .setup-banner strong{display:block;font-size:14px}.setup-banner span{font-size:12px;line-height:1.6}
+    .section-head{display:flex;align-items:end;justify-content:space-between;gap:12px;margin:24px 0 13px}
+    .section-head h2{font-size:20px;margin:0}.section-head p{font-size:12px;color:var(--muted);margin:3px 0 0}
+    .text-link{color:var(--green);font-weight:800;background:none;border:0;padding:8px}
+    .category-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+    .category{border:1px solid var(--line);background:var(--surface);border-radius:17px;min-height:105px;padding:14px 8px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:var(--ink);text-align:center;transition:.18s}
+    .category:hover{transform:translateY(-2px);border-color:var(--gold);box-shadow:var(--shadow)}
+    .cat-icon{width:38px;height:38px;border-radius:13px;background:var(--surface2);color:var(--green);display:grid;place-items:center}
+    .cat-icon svg{width:21px;height:21px}.category span:last-child{font-size:12px;font-weight:700;line-height:1.45}
+    .feature-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:24px 0}
+    .feature{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:16px;display:flex;gap:12px;align-items:flex-start}
+    .feature-mark{width:39px;height:39px;border-radius:13px;background:var(--surface2);display:grid;place-items:center;color:var(--green);flex:none}
+    .feature-mark svg{width:21px;height:21px}.feature strong{font-size:13px}.feature p{font-size:11px;color:var(--muted);margin:4px 0 0;line-height:1.65}
+    .searchbar{display:flex;gap:9px;margin:16px 0}.searchbox{flex:1;position:relative}.searchbox input{width:100%;padding:12px 43px 12px 13px;border:1px solid var(--line);border-radius:14px;background:var(--surface);color:var(--ink);min-height:48px}
+    .searchbox svg{position:absolute;right:14px;top:14px;width:20px;height:20px;color:var(--muted)}
+    .filter-select{border:1px solid var(--line);border-radius:14px;background:var(--surface);color:var(--ink);padding:0 12px;min-height:48px;max-width:170px}
+    .cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}
+    .listing-card{background:var(--surface);border:1px solid var(--line);border-radius:19px;padding:16px;min-width:0}
+    .card-top{display:flex;justify-content:space-between;gap:8px;align-items:center}
+    .badge{display:inline-flex;border-radius:99px;background:var(--surface2);color:var(--green);padding:5px 9px;font-size:11px;font-weight:800}
+    .heart{width:40px;height:40px;border-radius:13px;border:1px solid var(--line);color:var(--muted);background:var(--surface);display:grid;place-items:center}
+    .heart.active{color:#bd4b44;border-color:#e9c4bf}.heart svg{width:19px}
+    .listing-card h3{font-size:16px;line-height:1.55;margin:10px 0 5px}
+    .listing-card p{font-size:12px;color:var(--muted);line-height:1.7;margin:0 0 11px}
+    .meta{display:flex;flex-wrap:wrap;gap:11px;color:var(--muted);font-size:11px;margin:10px 0}
+    .card-actions{display:flex;gap:8px;margin-top:13px}.card-actions .btn{flex:1}
+    .empty{padding:30px 18px;border:1px dashed var(--line);background:var(--surface);border-radius:18px;text-align:center;color:var(--muted)}
+    .empty b{color:var(--ink);display:block;margin-bottom:5px}.empty p{font-size:12px;margin:0;line-height:1.7}
+    .page-title{font-size:25px;margin:16px 0 4px}.page-lead{color:var(--muted);font-size:13px;margin:0 0 18px;line-height:1.7}
+    .nav-bottom{position:fixed;z-index:20;bottom:0;left:0;right:0;background:color-mix(in srgb,var(--surface) 94%,transparent);border-top:1px solid var(--line);padding:7px 8px calc(7px + var(--safe-b));display:flex;justify-content:center;backdrop-filter:blur(14px)}
+    .nav-inner{width:min(700px,100%);display:grid;grid-template-columns:repeat(5,1fr);gap:4px}
+    .nav-item{background:none;border:0;color:var(--muted);min-height:55px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;border-radius:14px;font-size:10px;font-weight:700}
+    .nav-item svg{width:21px;height:21px}.nav-item.active{color:var(--green);background:var(--surface2)}
+    .modal-backdrop{position:fixed;inset:0;z-index:50;background:rgba(7,19,15,.58);display:flex;justify-content:center;align-items:flex-end;padding:12px}
+    .modal{width:min(650px,100%);max-height:min(90dvh,900px);overflow:auto;background:var(--surface);border-radius:24px;padding:22px;box-shadow:var(--shadow);animation:rise .2s ease}
+    .modal.wide{width:min(900px,100%)}.modal h2{margin:0 0 7px;font-size:21px}.modal-sub{margin:0 0 18px;color:var(--muted);font-size:12px;line-height:1.75}
+    .modal-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+    .close-btn{border:1px solid var(--line);background:var(--surface);color:var(--ink);height:40px;width:40px;border-radius:12px;font-size:22px}
+    .field{margin:0 0 13px}.field label{display:block;font-size:12px;font-weight:800;margin:0 0 6px}
+    .field input,.field textarea,.field select{width:100%;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:12px;padding:11px 12px;min-height:47px}
+    .field textarea{min-height:105px;resize:vertical}.field small{display:block;color:var(--muted);font-size:11px;margin-top:5px;line-height:1.55}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .modal-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:17px}.modal-actions .btn{flex:1}
+    .notice{padding:12px;border-radius:12px;background:var(--surface2);font-size:12px;line-height:1.7;color:var(--muted);margin:12px 0}
+    .notice.warn{background:#fff5de;color:#695521}.notice.error{background:#fff0ed;color:#813c35}
+    :root[data-theme="dark"] .notice.warn{background:#3c3422;color:#e5d297}:root[data-theme="dark"] .notice.error{background:#402823;color:#ffc1b5}
+    .tabs{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+    .tab-pill{border:1px solid var(--line);border-radius:99px;background:var(--surface);color:var(--muted);padding:8px 13px;font-weight:700}
+    .tab-pill.selected{background:var(--green);color:#fff;border-color:var(--green)}
+    .item-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 0;border-bottom:1px solid var(--line)}
+    .item-row:last-child{border:0}.item-row strong{font-size:13px}.item-row small{color:var(--muted);display:block;font-size:11px}
+    .avatar{width:44px;height:44px;border-radius:15px;background:var(--surface2);display:grid;place-items:center;font-weight:800;color:var(--green);flex:none}
+    .row-main{display:flex;align-items:center;gap:11px;min-width:0}.row-main>div:last-child{min-width:0}
+    .chat-window{height:50vh;min-height:280px;overflow:auto;background:var(--bg);border-radius:15px;padding:13px;margin:12px 0}
+    .bubble{max-width:82%;padding:10px 12px;border-radius:15px;background:var(--surface);margin:8px 0;font-size:13px;line-height:1.6;overflow-wrap:anywhere}
+    .bubble.mine{background:var(--green);color:#fff;margin-right:auto}
+    .bubble time{display:block;font-size:10px;opacity:.7;margin-top:3px}
+    .chat-form{display:flex;gap:8px}.chat-form input{flex:1;min-width:0;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:13px;padding:11px}
+    .switch-line{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 0;border-bottom:1px solid var(--line)}
+    .switch-line button{min-width:45px}.legal{font-size:13px;line-height:1.9;color:var(--muted)}
+    .codebox{white-space:pre;overflow:auto;max-height:310px;background:#13201b;color:#e0e7df;padding:14px;border-radius:13px;font:11px/1.6 ui-monospace,monospace;direction:ltr;text-align:left}
+    .toast{position:fixed;z-index:90;bottom:calc(82px + var(--safe-b));left:50%;transform:translateX(-50%);background:#172a23;color:#fff;border-radius:14px;padding:11px 16px;font-size:12px;max-width:90vw;box-shadow:var(--shadow);text-align:center}
+    .hidden{display:none!important}
+    .admin-shell{border:1px solid var(--line);border-radius:18px;padding:15px;background:var(--bg)}
+    .stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:14px 0}
+    .stat{background:var(--surface);padding:13px;border:1px solid var(--line);border-radius:14px}.stat b{display:block;font-size:20px}.stat span{font-size:11px;color:var(--muted)}
+    .image-preview{max-width:100%;max-height:190px;border-radius:12px;margin-top:9px}
+    footer{border-top:1px solid var(--line);margin-top:35px;padding:18px 0 10px;color:var(--muted);font-size:11px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+    @keyframes rise{from{opacity:.7;transform:translateY(12px)}to{opacity:1;transform:none}}
+    @media(min-width:760px){
+      .shell{padding:0 28px 48px}.hero{padding:38px 42px}.nav-bottom{position:static;background:none;border:0;padding:15px 0 5px;backdrop-filter:none}.nav-inner{max-width:610px;background:var(--surface);border:1px solid var(--line);padding:5px;border-radius:17px}
+      .modal-backdrop{align-items:center}.modal{border-radius:22px}
+    }
+    @media(max-width:700px){.category-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.feature-row{grid-template-columns:1fr}.hero{padding:25px 22px}.connection .status-text{display:none}}
+    @media(max-width:430px){.shell{padding-left:14px;padding-right:14px}.brand-name{font-size:13px}.quiet-btn .word{display:none}.category-grid{gap:8px}.category{min-height:94px}.cards{grid-template-columns:1fr}.filter-select{max-width:120px}.setup-banner{align-items:flex-start;flex-direction:column}.setup-banner .btn{width:100%}.form-row{grid-template-columns:1fr}}
+    @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true"><b>ن</b></div>
+        <div><div class="brand-name" id="brandName"></div><div class="brand-sub" id="brandSub"></div></div>
+      </div>
+      <div class="top-actions">
+        <div class="connection" title="حالة اتصال Firebase"><i class="dot" id="connDot"></i><span class="status-text" id="connText"></span></div>
+        <button class="icon-btn" data-act="theme" aria-label="تغيير المظهر" title="الوضع الليلي/النهاري"><span id="themeIcon"></span></button>
+        <button class="quiet-btn" data-act="language" aria-label="تغيير اللغة"><span id="langText"></span></button>
+        <button class="quiet-btn" data-act="account"><span id="accountIcon"></span><span class="word" id="accountText"></span></button>
+      </div>
+    </header>
+    <main id="view" aria-live="polite"></main>
+    <footer>
+      <span id="footerLine"></span>
+      <span><button class="text-link" data-act="privacy"></button><button class="text-link" data-act="terms"></button><button class="text-link" data-act="settings"></button></span>
+    </footer>
+    <nav class="nav-bottom" aria-label="التنقل الرئيسي"><div class="nav-inner" id="nav"></div></nav>
+  </div>
+  <div id="modalRoot"></div>
+  <div id="toastRoot"></div>
+
+<script type="module">
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const SVG={
+  home:'<path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/>',
+  search:'<circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/>',
+  group:'<path d="M16 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="10" cy="7" r="4"/><path d="M20 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>',
+  chat:'<path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8A8.5 8.5 0 0 1 8.7 3.9a8.4 8.4 0 0 1 3.8-.9h.5a8.5 8.5 0 0 1 8 8z"/>',
+  heart:'<path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8z"/>',
+  moon:'<path d="M20.9 13A9 9 0 0 1 11 3.1 9 9 0 1 0 20.9 13z"/>',
+  sun:'<circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/>',
+  user:'<circle cx="12" cy="8" r="4"/><path d="M5 21a7 7 0 0 1 14 0"/>',
+  briefcase:'<rect x="3" y="7" width="18" height="14" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 12h18"/>',
+  house:'<path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/>',
+  store:'<path d="M3 10h18l-2-7H5z"/><path d="M5 10v11h14V10M9 21v-7h6v7M3 10a3 3 0 0 0 6 0 3 3 0 0 0 6 0 3 3 0 0 0 6 0"/>',
+  school:'<path d="m3 10 9-7 9 7-9 7z"/><path d="M7 13v5c3 3 7 3 10 0v-5M21 10v6"/>',
+  medical:'<path d="M10 3H6a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3h12a3 3 0 0 0 3-3v-4"/><path d="M16 3h5v5M21 3l-9 9"/><path d="M8 15h5m-2.5-2.5v5"/>',
+  event:'<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/>',
+  travel:'<path d="m2 16 20-5-8-3-3-6-2 1 1 6-6 2-2-2-2 1 2 4z"/>',
+  gift:'<rect x="3" y="8" width="18" height="13" rx="2"/><path d="M12 8v13M3 12h18M12 8H7a2.5 2.5 0 1 1 2.5-2.5C9.5 7 12 8 12 8zm0 0h5a2.5 2.5 0 1 0-2.5-2.5C14.5 7 12 8 12 8z"/>',
+  help:'<circle cx="12" cy="12" r="9"/><path d="M12 16v.01M9.5 9a2.5 2.5 0 1 1 4.4 1.6c-1 1-1.9 1.2-1.9 2.4"/>',
+  pin:'<path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0z"/><circle cx="12" cy="10" r="2.5"/>',
+  plus:'<path d="M12 5v14M5 12h14"/>',
+  shield:'<path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11z"/><path d="m9 12 2 2 4-4"/>',
+  menu:'<path d="M4 6h16M4 12h16M4 18h16"/>',
+  bell:'<path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/>',
+  star:'<path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-3-5.6 3 1.1-6.2L3 9.6l6.2-.9z"/>',
+  bag:'<path d="M5 8h14l-1 13H6L5 8zM9 8a3 3 0 0 1 6 0"/>',
+  news:'<path d="M4 4h16v17H4zM8 8h8M8 12h8M8 16h5"/>'
+};
+function icon(name){return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${SVG[name]||SVG.group}</svg>`}
+const I18N={
+ ar:{brand:'الجالية المصرية بنجران',sub:'معاك في الغربة · مجتمع يجمعنا',connected:'متصل بالخدمات',disconnected:'يتطلب إعداد Firebase',checking:'جارٍ الاتصال',login:'دخول / حساب',logout:'تسجيل الخروج',home:'الرئيسية',explore:'استكشف',community:'المجتمع',inbox:'الرسائل',saved:'المفضلة',welcome:'أهلاً بيك وسط أهلك',hero:'معاك في الغربة',heroDesc:'مساحة واحدة تربط أبناء الجالية المصرية في نجران بالخدمات والفرص والسكن والمجتمع. تصفّح ما هو منشور أو شارك بإعلانك بعد تسجيل الدخول.',browse:'استكشف الخدمات',publish:'أضف إعلانك',setup:'إعداد Firebase مطلوب لتفعيل الحسابات والبيانات الحقيقية',setupDesc:'أضف إعدادات مشروعك لربط تسجيل الهاتف وقاعدة البيانات. لن تظهر بيانات تجريبية.',configure:'إعداد الاتصال',categories:'أقسام الجالية',categoriesDesc:'اختر القسم للبحث في الإعلانات المنشورة فعلياً.',latest:'أحدث الإعلانات',all:'عرض الكل',support:'الجالية أقرب لبعض',supportDesc:'تسجيل برقم هاتف موثّق، وإعلانات تخضع للمراجعة، ومساحة تواصل مباشرة بين المستخدمين.',verified:'حسابات برقم هاتف موثّق',verifiedDesc:'تسجيل الدخول يعتمد على رمز SMS من Firebase Phone Auth.',moderated:'محتوى تحت المراجعة',moderatedDesc:'الإعلانات الجديدة لا تظهر للعامة قبل اعتمادها.',private:'خصوصية وصلاحيات',privateDesc:'محتوى الحسابات محمي بقواعد Firestore التي تجهزها لمشروعك.',find:'ابحث عن خدمة أو إعلان…',filter:'كل الأقسام',nothing:'لا توجد نتائج منشورة هنا حتى الآن',nothingDesc:'عند اعتماد إعلانات حقيقية ستظهر في هذا القسم.',communityTitle:'مجتمعنا',communityDesc:'منشورات الجالية التي اعتمدها المشرفون.',newPost:'اكتب منشوراً',messagesTitle:'محادثاتك',messagesDesc:'محادثاتك الخاصة تظهر بعد تسجيل الدخول.',savedTitle:'مفضلتك',savedDesc:'الإعلانات التي حفظتها على هذا الجهاز.',profileTitle:'حسابي',profileDesc:'أدر ملفك الشخصي وإعدادات المنصة.',admin:'لوحة الإدارة',settings:'الإعدادات',privacy:'الخصوصية',terms:'الشروط',footer:'منصة مجتمعية مستقلة — لا تعتمد على بيانات وهمية.',search:'بحث',city:'نجران',type:'القسم',rating:'التقييمات',newListing:'إعلان جديد',show:'التفاصيل',contact:'مراسلة المعلن',favorite:'أضف للمفضلة',removeFavorite:'إزالة من المفضلة',map:'عرض الموقع على الخرائط',report:'إبلاغ',review:'أضف تقييماً',loginNeeded:'سجّل الدخول أولاً لإتمام هذه الخطوة.',save:'حفظ',cancel:'إلغاء',send:'إرسال',loading:'جارٍ التحميل…',error:'تعذر إتمام العملية',noData:'لا توجد بيانات منشورة حالياً.',settingsTitle:'إعداد المنصة والاتصال',settingsDesc:'تطبيق الواجهة يحتاج مشروع Firebase خاصاً بك قبل أن يعمل كتطبيق حي.',configLabel:'إعداد Firebase Web App (JSON)',configHelp:'من Firebase Console ← Project settings ← Your apps ← Web app. الإعدادات المعروضة في العميل معرّفات عامة وليست أسرار خادم.',connect:'حفظ وربط Firebase',rules:'قواعد Firestore المقترحة',functions:'وظائف الإدارة الموثوقة',sw:'إعداد إشعارات الويب',delivery:'متطلبات نسخة Android والنشر',connectOk:'تم إعداد Firebase للاتصال. تحقق من مصادقة النطاق وقواعد قاعدة البيانات.',phone:'رقم الهاتف بصيغة دولية',sendOtp:'إرسال رمز SMS',otp:'رمز التحقق',verify:'تحقق ودخول',profileName:'الاسم الذي يظهر للمجتمع',finishProfile:'حفظ الملف الشخصي',phoneHelp:'اكتب الرقم مع مفتاح الدولة، مثال: +9665xxxxxxxx.',authIntro:'ستصلك رسالة تحقق من Firebase. لا يمكن الدخول قبل إدخال الرمز الصحيح.',postTitle:'عنوان الإعلان',description:'التفاصيل',location:'الموقع/الحي (اختياري)',contactPhone:'رقم تواصل (اختياري)',price:'السعر (اختياري)',photo:'صورة (اختيارية، حتى 5 ميغابايت)',submit:'إرسال للمراجعة',pending:'قيد المراجعة',approved:'منشور',rejected:'مرفوض',reportReason:'سبب البلاغ',reviewText:'اكتب تقييمك',stars:'التقييم من 1 إلى 5',profile:'الملف الشخصي',editProfile:'تعديل الملف',enableNotifications:'تفعيل إشعارات الويب',vapid:'مفتاح Web Push VAPID (اختياري)',notificationsInfo:'تحتاج إشعارات الويب إلى HTTPS وملف service worker ومفتاح VAPID. داخل APK قد تحتاج تهيئة FCM Native مستقلة.',searchFilter:'تصفية النتائج',noChats:'لا توجد محادثات بعد',noChatsDesc:'ابدأ محادثة من تفاصيل إعلان منشور.',enterMessage:'اكتب رسالتك…',startChat:'مراسلة',adminTitle:'بوابة إدارة الجالية',adminDesc:'الدخول يتطلب هاتفاً موثقاً ورمز SMS، ثم مطالبة admin موثوقة على الخادم.',adminLogin:'تحقق من صلاحية المدير',adminOtp:'رمز المدير',adminDashboard:'إدارة المحتوى والبلاغات',adminDenied:'الحساب موثّق بالهاتف، لكنه لا يملك صلاحية إدارية من Firebase.',refresh:'تحديث',pendingList:'إعلانات بانتظار المراجعة',reports:'البلاغات',users:'المستخدمون',approve:'اعتماد',reject:'رفض',adminSetup:'إنشاء Super Admin آمن',adminSetupDesc:'لا يستطيع المستخدم منح نفسه صفة المدير من الواجهة. امنح أول مطالبة superAdmin مرة واحدة باستخدام Firebase Admin SDK من بيئة موثوقة، ثم أعد تسجيل الدخول.',copy:'نسخ',copied:'تم النسخ',privacyText:'يستخدم هذا التطبيق رقم الهاتف للتحقق عبر Firebase Authentication، وبيانات الملف والإعلانات والمحادثات لتقديم خدمات المجتمع. يلزم نشر قواعد Firebase المناسبة وتحديد مدة الاحتفاظ وإجراءات حذف الحساب قبل الإطلاق. لا تضع أسرار خادم أو مفاتيح خاصة في واجهة التطبيق. أضف بريد/عنوان تواصل مسؤول الخصوصية واسم الجهة القانونية قبل النشر؛ هذه صياغة أولية تحتاج مراجعة قانونية.',termsText:'باستخدام المنصة يلتزم المستخدم بصحة المعلومات واحترام الأنظمة والخصوصية وعدم نشر محتوى مضلل أو مسيء. الإعلانات والمحادثات مسؤولية أصحابها، ولا تضمن المنصة الخدمات أو المعاملات بين المستخدمين. يحق للمشرفين مراجعة المحتوى وإزالة المخالفات وفق سياسة معلنة. أضف بيانات الجهة المشغلة وآلية الشكاوى والاسترجاع إن وجدت قبل النشر؛ هذه الشروط نموذج أولي تحتاج مراجعة قانونية.',emptyImage:'تعذر تحميل الصورة',reportSent:'تم إرسال البلاغ للمراجعة',reviewSent:'تم إرسال تقييمك',postSent:'أُرسل المحتوى للمراجعة',listingSent:'أُرسل الإعلان للمراجعة',saved:'أُضيف للمفضلة',unsaved:'أزيل من المفضلة',chatError:'تعذر فتح المحادثة',adminOnly:'هذا الإجراء يتطلب وظيفة موثوقة منشورة في Firebase Functions.',functionsRequired:'إجراءات الإدارة تُنفّذ على الخادم وتكتب سجل تدقيق. انشر الوظائف المقترحة أولاً.',noPermission:'ليس لديك صلاحية قراءة هذا المحتوى. تحقق من Firebase Security Rules.',english:'English',arabic:'العربية',browseOnly:'التصفح العام متاح، أما النشر والمراسلة فيتطلبان التحقق من الهاتف.',category:'القسم',human:'المساعدة الإنسانية',urgent:'الطوارئ والمستشفيات',news:'الأخبار والإعلانات',lost:'المفقودات',shipping:'السفر والشحن',deals:'العروض والخصومات',restaurants:'المطاعم والمحلات',events:'الفعاليات والرحلات',education:'التعليم والمدارس',services:'دليل الخدمات',jobs:'الوظائف والتوظيف',housing:'العقارات والسكن',market:'سوق البيع والشراء',communityCat:'المجتمع والمنشورات',legal:'الخدمات القانونية والطبية والفنية',applyConfig:'راجع إعدادات الربط قبل إطلاق أي نسخة.'},
+ en:{brand:'Egyptian Community in Najran',sub:'Together away from home · A community that connects us',connected:'Firebase connected',disconnected:'Firebase setup required',checking:'Connecting',login:'Sign in / Join',logout:'Sign out',home:'Home',explore:'Explore',community:'Community',inbox:'Messages',saved:'Saved',welcome:'Welcome among your people',hero:'Together away from home',heroDesc:'One place connecting Egyptians in Najran with local services, opportunities, housing and community. Browse approved posts or sign in to publish.',browse:'Explore services',publish:'Post an ad',setup:'Firebase setup required to enable accounts and real data',setupDesc:'Add your Firebase project settings to connect phone sign-in and the database. No sample content is displayed.',configure:'Configure connection',categories:'Community sections',categoriesDesc:'Choose a section to browse genuinely published listings.',latest:'Latest listings',all:'View all',support:'Closer, together',supportDesc:'Phone-verified accounts, moderated listings and direct member-to-member conversations.',verified:'Phone-verified accounts',verifiedDesc:'Sign-in uses an SMS code from Firebase Phone Auth.',moderated:'Moderated content',moderatedDesc:'New listings are hidden until approved by a moderator.',private:'Privacy and access',privateDesc:'Account content is protected by the Firestore rules you configure.',find:'Search services or listings…',filter:'All sections',nothing:'No published results here yet',nothingDesc:'Real listings will appear once they have been approved.',communityTitle:'Community',communityDesc:'Posts approved by community moderators.',newPost:'Write a post',messagesTitle:'Your conversations',messagesDesc:'Your private conversations appear after sign-in.',savedTitle:'Saved listings',savedDesc:'Listings saved on this device.',profileTitle:'My account',profileDesc:'Manage your profile and platform settings.',admin:'Admin portal',settings:'Settings',privacy:'Privacy',terms:'Terms',footer:'Independent community platform — no fabricated listings.',search:'Search',city:'Najran',type:'Section',rating:'Reviews',newListing:'New listing',show:'Details',contact:'Message publisher',favorite:'Save listing',removeFavorite:'Remove saved listing',map:'Open map',report:'Report',review:'Add a review',loginNeeded:'Sign in first to do that.',save:'Save',cancel:'Cancel',send:'Send',loading:'Loading…',error:'Could not complete this action',noData:'No published content yet.',settingsTitle:'Platform setup and connection',settingsDesc:'Connect your own Firebase project before this client can operate as a live service.',configLabel:'Firebase Web App configuration (JSON)',configHelp:'Firebase Console → Project settings → Your apps → Web app. Client configuration values are public identifiers, not server secrets.',connect:'Save and connect Firebase',rules:'Suggested Firestore rules',functions:'Trusted admin functions',sw:'Web notification setup',delivery:'Android release and publishing',connectOk:'Firebase configuration saved. Verify authorized domains and database rules.',phone:'Phone number in international format',sendOtp:'Send SMS code',otp:'Verification code',verify:'Verify and sign in',profileName:'Name shown to the community',finishProfile:'Save profile',phoneHelp:'Include the country code, e.g. +9665xxxxxxxx.',authIntro:'Firebase will send an SMS code. You cannot sign in without the correct code.',postTitle:'Listing title',description:'Details',location:'Location / neighborhood (optional)',contactPhone:'Contact number (optional)',price:'Price (optional)',photo:'Photo (optional, up to 5 MB)',submit:'Submit for review',pending:'Pending review',approved:'Published',rejected:'Rejected',reportReason:'Report reason',reviewText:'Write your review',stars:'Rating from 1 to 5',profile:'Profile',editProfile:'Edit profile',enableNotifications:'Enable web notifications',vapid:'Web Push VAPID key (optional)',notificationsInfo:'Web notifications require HTTPS, a service worker and a VAPID key. An Android APK may need separate native FCM setup.',searchFilter:'Filter results',noChats:'No conversations yet',noChatsDesc:'Start a conversation from a published listing.',enterMessage:'Write a message…',startChat:'Message',adminTitle:'Community admin portal',adminDesc:'Requires verified phone OTP and a trusted Firebase admin claim.',adminLogin:'Verify administrator access',adminOtp:'Admin code',adminDashboard:'Manage content and reports',adminDenied:'Phone verified, but this account has no trusted Firebase administrator claim.',refresh:'Refresh',pendingList:'Listings awaiting review',reports:'Reports',users:'Users',approve:'Approve',reject:'Reject',adminSetup:'Secure Super Admin bootstrap',adminSetupDesc:'Users cannot assign themselves admin access in this client. Grant the initial superAdmin claim once using Firebase Admin SDK in a trusted environment, then sign in again.',copy:'Copy',copied:'Copied',privacyText:'This application uses your phone number for Firebase Authentication and profile, listing and conversation data to provide community services. Publish appropriate Firebase security rules and define retention and account deletion procedures before launch. Never place server secrets or private keys in the client. Add the privacy contact and legal entity before publishing; this is a draft requiring legal review.',termsText:'Users must provide accurate information, respect applicable laws and privacy, and avoid misleading or abusive content. Listings and conversations are the responsibility of their participants; the platform does not guarantee services or transactions. Moderators may review and remove violations under a published policy. Add operator details and complaint/refund policies where applicable before launch; this draft requires legal review.',emptyImage:'Could not load image',reportSent:'Report submitted for review',reviewSent:'Review submitted',postSent:'Content submitted for review',listingSent:'Listing submitted for review',saved:'Added to saved listings',unsaved:'Removed from saved listings',chatError:'Could not open conversation',adminOnly:'This action needs a deployed trusted Firebase Function.',functionsRequired:'Admin actions run on the server and write audit logs. Deploy the suggested functions first.',noPermission:'Access denied. Check your Firebase Security Rules.',english:'English',arabic:'العربية',browseOnly:'Public browsing is available; posting and messaging require phone verification.',category:'Section',human:'Humanitarian aid',urgent:'Emergencies & hospitals',news:'News & announcements',lost:'Lost & found',shipping:'Travel & shipping',deals:'Offers & discounts',restaurants:'Restaurants & shops',events:'Events & trips',education:'Education & schools',services:'Services directory',jobs:'Jobs & employment',housing:'Housing & property',market:'Buy & sell',communityCat:'Community posts',legal:'Medical, legal & trades',applyConfig:'Verify your project setup before releasing an app.'}
+};
+let lang=localStorage.getItem('najran_lang')||'ar';
+let theme=localStorage.getItem('najran_theme')||'light';
+const t=k=>(I18N[lang]||I18N.ar)[k]||I18N.ar[k]||k;
+const isAr=()=>lang==='ar';
+const categoryData=[
+ {id:'jobs',ar:'الوظائف والتوظيف',en:'Jobs & employment',ico:'briefcase'},
+ {id:'services',ar:'دليل الخدمات والأطباء والمحامين والفنيين',en:'Services, doctors & trades',ico:'medical'},
+ {id:'housing',ar:'العقارات والسكن',en:'Housing & property',ico:'house'},
+ {id:'market',ar:'سوق البيع والشراء',en:'Buy & sell',ico:'bag'},
+ {id:'community',ar:'المجتمع والمنشورات',en:'Community posts',ico:'group'},
+ {id:'restaurants',ar:'المطاعم والمحلات',en:'Restaurants & shops',ico:'store'},
+ {id:'news',ar:'الأخبار والإعلانات',en:'News & announcements',ico:'news'},
+ {id:'human',ar:'المساعدات الإنسانية',en:'Humanitarian aid',ico:'help'},
+ {id:'urgent',ar:'الطوارئ والمستشفيات',en:'Emergencies & hospitals',ico:'medical'},
+ {id:'education',ar:'التعليم والمدارس',en:'Education & schools',ico:'school'},
+ {id:'events',ar:'الفعاليات والرحلات',en:'Events & trips',ico:'event'},
+ {id:'shipping',ar:'السفر والشحن بين مصر والسعودية',en:'Egypt–Saudi travel & shipping',ico:'travel'},
+ {id:'lost',ar:'المفقودات',en:'Lost & found',ico:'search'},
+ {id:'deals',ar:'العروض والخصومات',en:'Offers & discounts',ico:'gift'}
+];
+const catName=id=>{const c=categoryData.find(x=>x.id===id);return c?(isAr()?c.ar:c.en):t(id)||id};
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+let config=null,fb=null,auth=null,db=null,storage=null,fnModule=null,messagingModule=null;
+let user=null,userProfile=null,adminAuth=null,adminDb=null,adminFunctions=null,adminUser=null;
+let unsubListings=null,unsubPosts=null,unsubChats=null,chatUnsub=null;
+let listings=[],posts=[],chatRows=[],savedIds=new Set(JSON.parse(localStorage.getItem('najran_favs')||'[]'));
+let activeTab='home',activeCategory='all',query='',busy=false,currentDetail=null,currentChat=null,selectedImage=null;
+let cachedFns=null;
+function applyTheme(){document.documentElement.dataset.theme=theme;$('#themeIcon').innerHTML=icon(theme==='dark'?'sun':'moon')}
+function updateHeader(){
+ $('#brandName').textContent=t('brand');$('#brandSub').textContent=t('sub');
+ $('#connDot').className='dot '+(fb?'on':(config?'':'off'));
+ $('#connText').textContent=fb?t('connected'):(config?t('checking'):t('disconnected'));
+ $('#accountIcon').innerHTML=icon(user?'user':'user');$('#accountText').textContent=user?(userProfile?.displayName||user.phoneNumber||t('profile')):t('login');
+ $('#langText').textContent=isAr()?'EN':'ع';$('#footerLine').textContent=t('footer');
+ $$('footer [data-act="privacy"]');
+}
+const navItems=[['home','home'],['explore','search'],['community','group'],['inbox','chat'],['saved','heart']];
+function renderNav(){
+ $('#nav').innerHTML=navItems.map(([id,ico])=>`<button class="nav-item ${activeTab===id?'active':''}" data-act="nav" data-tab="${id}">${icon(ico)}<span>${t(id)}</span></button>`).join('');
+}
+function isReady(){return !!(fb&&db&&auth)}
+function timeText(ts){
+ try{const d=ts?.toDate?ts.toDate():new Date(ts);return Number.isNaN(+d)?'':new Intl.DateTimeFormat(isAr()?'ar-SA':'en-US',{dateStyle:'medium'}).format(d)}catch{return ''}
+}
+function showToast(msg){
+ const root=$('#toastRoot');root.innerHTML=`<div class="toast" role="status">${esc(msg)}</div>`;
+ clearTimeout(showToast.timer);showToast.timer=setTimeout(()=>root.replaceChildren(),3500)
+}
+function openModal(html,wide=false){
+ const root=$('#modalRoot');root.innerHTML=`<div class="modal-backdrop" data-act="backdrop"><section class="modal ${wide?'wide':''}" role="dialog" aria-modal="true">${html}</section></div>`;
+ document.body.style.overflow='hidden';
+}
+function closeModal(){if(chatUnsub){chatUnsub();chatUnsub=null}$('#modalRoot').replaceChildren();document.body.style.overflow=''}
+function modalHeader(title,sub=''){return `<div class="modal-head"><div><h2>${esc(title)}</h2>${sub?`<p class="modal-sub">${esc(sub)}</p>`:''}</div><button class="close-btn" data-act="close" aria-label="${esc(t('cancel'))}">×</button></div>`}
+function field(label,name,placeholder='',type='text',extra=''){return `<div class="field"><label for="${esc(name)}">${esc(label)}</label><input id="${esc(name)}" name="${esc(name)}" type="${esc(type)}" placeholder="${esc(placeholder)}" ${extra}></div>`}
+function emptyBox(title,desc){return `<div class="empty"><b>${esc(title)}</b><p>${esc(desc)}</p></div>`}
+function catCard(c){return `<button class="category" data-act="category" data-category="${c.id}"><span class="cat-icon">${icon(c.ico)}</span><span>${esc(isAr()?c.ar:c.en)}</span></button>`}
+function listingCard(x){
+ const fav=savedIds.has(x.id);
+ return `<article class="listing-card">
+ <div class="card-top"><span class="badge">${esc(catName(x.category))}</span><button class="heart ${fav?'active':''}" data-act="favorite" data-id="${esc(x.id)}" aria-label="${esc(fav?t('removeFavorite'):t('favorite'))}">${icon('heart')}</button></div>
+ <h3>${esc(x.title||t('newListing'))}</h3><p>${esc((x.description||'').slice(0,125))}${(x.description||'').length>125?'…':''}</p>
+ <div class="meta"><span>${icon('pin')} ${esc(x.location||t('city'))}</span>${x.price?`<span>${esc(x.price)}</span>`:''}<span>${esc(timeText(x.createdAt))}</span></div>
+ <div class="card-actions"><button class="btn btn-outline btn-small" data-act="detail" data-id="${esc(x.id)}">${esc(t('show'))}</button>${x.ownerId!==user?.uid?`<button class="btn btn-primary btn-small" data-act="chat" data-id="${esc(x.id)}">${icon('chat')} ${esc(t('contact'))}</button>`:''}</div>
+ </article>`;
+}
+function sortedItems(arr){return [...arr].sort((a,b)=>((b.createdAt?.seconds||0)-(a.createdAt?.seconds||0)))}
+function filteredItems(arr){
+ let out=sortedItems(arr);
+ if(activeCategory!=='all')out=out.filter(x=>x.category===activeCategory);
+ if(query.trim()){const q=query.trim().toLocaleLowerCase();out=out.filter(x=>`${x.title||''} ${x.description||''} ${x.location||''} ${x.category||''}`.toLocaleLowerCase().includes(q))}
+ return out
+}
+function cardsBlock(items){
+ const shown=filteredItems(items);
+ return shown.length?`<div class="cards">${shown.map(listingCard).join('')}</div>`:emptyBox(t('nothing'),t('nothingDesc'));
+}
+function setupBanner(){return !isReady()?`<section class="setup-banner"><div><strong>${esc(t('setup'))}</strong><span>${esc(t('setupDesc'))}</span></div><button class="btn btn-primary" data-act="settings">${esc(t('configure'))}</button></section>`:''}
+function renderHome(){
+ const recent=sortedItems(listings).slice(0,3);
+ return `${setupBanner()}
+ <section class="hero"><div class="hero-content"><span class="eyebrow">${esc(t('welcome'))}</span><h1>${esc(t('hero'))}</h1><p>${esc(t('heroDesc'))}</p><div class="hero-actions"><button class="btn btn-primary" data-act="nav" data-tab="explore">${esc(t('browse'))}</button><button class="btn btn-light" data-act="create">${icon('plus')} ${esc(t('publish'))}</button></div></div></section>
+ <div class="section-head"><div><h2>${esc(t('categories'))}</h2><p>${esc(t('categoriesDesc'))}</p></div></div>
+ <div class="category-grid">${categoryData.map(catCard).join('')}</div>
+ <div class="feature-row">
+  <article class="feature"><span class="feature-mark">${icon('shield')}</span><div><strong>${esc(t('verified'))}</strong><p>${esc(t('verifiedDesc'))}</p></div></article>
+  <article class="feature"><span class="feature-mark">${icon('news')}</span><div><strong>${esc(t('moderated'))}</strong><p>${esc(t('moderatedDesc'))}</p></div></article>
+  <article class="feature"><span class="feature-mark">${icon('heart')}</span><div><strong>${esc(t('private'))}</strong><p>${esc(t('privateDesc'))}</p></div></article>
+ </div>
+ <div class="section-head"><div><h2>${esc(t('latest'))}</h2><p>${esc(t('city'))}</p></div><button class="text-link" data-act="nav" data-tab="explore">${esc(t('all'))} ←</button></div>
+ ${recent.length?`<div class="cards">${recent.map(listingCard).join('')}</div>`:emptyBox(t('nothing'),t('nothingDesc'))}`;
+}
+function renderExplore(){
+ return `<h1 class="page-title">${esc(t('explore'))}</h1><p class="page-lead">${esc(t('categoriesDesc'))}</p>
+ <div class="searchbar"><div class="searchbox">${icon('search')}<input id="mainSearch" value="${esc(query)}" placeholder="${esc(t('find'))}" autocomplete="off"></div>
+ <select class="filter-select" id="categoryFilter" aria-label="${esc(t('searchFilter'))}"><option value="all">${esc(t('filter'))}</option>${categoryData.map(c=>`<option value="${c.id}" ${activeCategory===c.id?'selected':''}>${esc(isAr()?c.ar:c.en)}</option>`).join('')}</select></div>
+ <div id="results">${cardsBlock(listings)}</div>`;
+}
+function renderCommunity(){
+ return `<div class="section-head"><div><h1 class="page-title">${esc(t('communityTitle'))}</h1><p class="page-lead">${esc(t('communityDesc'))}</p></div><button class="btn btn-primary" data-act="create-post">${icon('plus')} ${esc(t('newPost'))}</button></div>
+ ${posts.length?`<div class="cards">${sortedItems(posts).map(p=>`<article class="listing-card"><div class="card-top"><span class="badge">${esc(t('community'))}</span><span class="meta">${esc(timeText(p.createdAt))}</span></div><h3>${esc(p.title||'')}</h3><p>${esc(p.description||'')}</p><div class="card-actions"><button class="btn btn-outline btn-small" data-act="report" data-type="post" data-id="${esc(p.id)}">${esc(t('report'))}</button>${p.ownerId!==user?.uid?`<button class="btn btn-primary btn-small" data-act="chat" data-id="${esc(p.id)}">${icon('chat')} ${esc(t('contact'))}</button>`:''}</div></article>`).join('')}</div>`:emptyBox(t('nothing'),t('nothingDesc'))}`;
+}
+function renderSaved(){
+ const chosen=sortedItems(listings.filter(x=>savedIds.has(x.id)));
+ return `<h1 class="page-title">${esc(t('savedTitle'))}</h1><p class="page-lead">${esc(t('savedDesc'))}</p>${chosen.length?`<div class="cards">${chosen.map(listingCard).join('')}</div>`:emptyBox(t('nothing'),t('savedDesc'))}`;
+}
+function renderProfile(){
+ if(!user)return `<h1 class="page-title">${esc(t('profileTitle'))}</h1><p class="page-lead">${esc(t('profileDesc'))}</p>${emptyBox(t('login'),t('browseOnly'))}<button class="btn btn-primary" data-act="account">${esc(t('login'))}</button>`;
+ return `<h1 class="page-title">${esc(t('profileTitle'))}</h1><p class="page-lead">${esc(t('profileDesc'))}</p>
+ <article class="listing-card"><div class="row-main"><div class="avatar">${esc((userProfile?.displayName||user.phoneNumber||'م').slice(0,1))}</div><div><strong>${esc(userProfile?.displayName||t('profile'))}</strong><small>${esc(user.phoneNumber||'')}</small></div></div>
+ <div class="modal-actions"><button class="btn btn-outline" data-act="edit-profile">${esc(t('editProfile'))}</button><button class="btn btn-outline" data-act="settings">${esc(t('settings'))}</button><button class="btn btn-danger" data-act="logout">${esc(t('logout'))}</button></div></article>
+ <div class="feature-row"><article class="feature"><span class="feature-mark">${icon('shield')}</span><div><strong>${esc(t('admin'))}</strong><p>${esc(t('adminDesc'))}</p><button class="text-link" data-act="admin">${esc(t('admin'))} ←</button></div></article>
+ <article class="feature"><span class="feature-mark">${icon('bell')}</span><div><strong>${esc(t('enableNotifications'))}</strong><p>${esc(t('notificationsInfo'))}</p><button class="text-link" data-act="notifications">${esc(t('enableNotifications'))} ←</button></div></article></div>`;
+}
+function renderInbox(){
+ if(!user)return `<h1 class="page-title">${esc(t('messagesTitle'))}</h1><p class="page-lead">${esc(t('messagesDesc'))}</p>${emptyBox(t('login'),t('loginNeeded'))}<button class="btn btn-primary" data-act="account">${esc(t('login'))}</button>`;
+ if(!chatRows.length)return `<h1 class="page-title">${esc(t('messagesTitle'))}</h1><p class="page-lead">${esc(t('messagesDesc'))}</p>${emptyBox(t('noChats'),t('noChatsDesc'))}`;
+ return `<h1 class="page-title">${esc(t('messagesTitle'))}</h1><p class="page-lead">${esc(t('messagesDesc'))}</p><div class="listing-card">${chatRows.map(c=>{
+ const other=(c.members||[]).find(m=>m!==user.uid)||'';
+ const label=c.memberNames?.[other]||other.slice(0,10);
+ return `<button class="item-row" style="width:100%;background:none;color:inherit;border:0;text-align:inherit" data-act="open-chat" data-chat="${esc(c.id)}"><span class="row-main"><span class="avatar">${esc(label.slice(0,1))}</span><span><strong>${esc(label)}</strong><small>${esc(c.lastMessage||'')}</small></span></span><small>${esc(timeText(c.lastAt))}</small></button>`;
+ }).join('')}</div>`;
+}
+function render(){
+ document.documentElement.lang=lang;document.documentElement.dir=isAr()?'rtl':'ltr';
+ updateHeader();renderNav();
+ const view=$('#view');
+ view.innerHTML=activeTab==='home'?renderHome():activeTab==='explore'?renderExplore():activeTab==='community'?renderCommunity():activeTab==='inbox'?renderInbox():activeTab==='saved'?renderSaved():renderProfile();
+ if(activeTab==='explore'){
+  const search=$('#mainSearch');if(search)search.addEventListener('input',e=>{query=e.target.value;const r=$('#results');if(r)r.innerHTML=cardsBlock(listings)});
+  const select=$('#categoryFilter');if(select)select.addEventListener('change',e=>{activeCategory=e.target.value;const r=$('#results');if(r)r.innerHTML=cardsBlock(listings)});
+ }
+}
+function changeTab(tab){
+ activeTab=tab;render();window.scrollTo({top:0,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});
+ if(tab==='inbox'&&user)watchChats();
+}
+function stopSubs(){[unsubListings,unsubPosts,unsubChats].forEach(f=>{try{f?.()}catch{}});unsubListings=unsubPosts=unsubChats=null}
+async function loadModules(cfg){
+ const [appM,authM,storeM,storageM,functionsM]=await Promise.all([
+  import('https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js'),
+  import('https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js'),
+  import('https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js'),
+  import('https://www.gstatic.com/firebasejs/10.12.5/firebase-storage.js'),
+  import('https://www.gstatic.com/firebasejs/10.12.5/firebase-functions.js')
+ ]);
+ fb=appM.initializeApp(cfg);auth=authM.getAuth(fb);db=storeM.getFirestore(fb);storage=storageM.getStorage(fb);fnModule=functionsM;
+ cachedFns={appM,authM,storeM,storageM,functionsM};
+ authM.onAuthStateChanged(auth,async u=>{
+  user=u;userProfile=null;
+  if(u){
+   try{const snap=await storeM.getDoc(storeM.doc(db,'users',u.uid));if(snap.exists())userProfile=snap.data();
+    else {userProfile={displayName:'',phoneNumber:u.phoneNumber||''};setTimeout(()=>showProfileModal(true),250)}
+   }catch(e){console.warn('profile read',e);userProfile={displayName:'',phoneNumber:u.phoneNumber||''}}
+  }
+  render();if(u&&activeTab==='inbox')watchChats();
+ });
+ listenPublicData();render();return true;
+}
+function listenPublicData(){
+ if(!db||!cachedFns)return;
+ const {storeM}=cachedFns;stopSubs();
+ const q1=storeM.query(storeM.collection(db,'listings'),storeM.where('status','==','approved'),storeM.limit(100));
+ unsubListings=storeM.onSnapshot(q1,s=>{listings=s.docs.map(d=>({id:d.id,...d.data()}));render()},e=>{console.error(e);showToast(t('noPermission'))});
+ const q2=storeM.query(storeM.collection(db,'posts'),storeM.where('status','==','approved'),storeM.limit(100));
+ unsubPosts=storeM.onSnapshot(q2,s=>{posts=s.docs.map(d=>({id:d.id,...d.data()}));render()},e=>console.warn('posts listener',e));
+}
+function watchChats(){
+ if(!db||!user||!cachedFns)return;
+ if(unsubChats)unsubChats();
+ const {storeM}=cachedFns;
+ const q=storeM.query(storeM.collection(db,'chats'),storeM.where('members','array-contains',user.uid),storeM.limit(50));
+ unsubChats=storeM.onSnapshot(q,s=>{chatRows=s.docs.map(d=>({id:d.id,...d.data()})).sort((a,b)=>(b.lastAt?.seconds||0)-(a.lastAt?.seconds||0));if(activeTab==='inbox')render()},e=>{console.warn(e);showToast(t('noPermission'))});
+}
+async function configureFirebase(raw){
+ let cfg;try{cfg=JSON.parse(raw)}catch{throw new Error(isAr()?'JSON غير صالح.':'Invalid JSON.')}
+ if(!cfg||!cfg.apiKey||!cfg.authDomain||!cfg.projectId||!cfg.appId)throw new Error(isAr()?'تأكد من apiKey وauthDomain وprojectId وappId.':'Add apiKey, authDomain, projectId and appId.');
+ localStorage.setItem('najran_firebase_config',JSON.stringify(cfg));
+ config=cfg;
+ try{if(fb){stopSubs();try{await cachedFns.authM.signOut(auth)}catch{};cachedFns.appM.deleteApp(fb).catch(()=>{})}fb=null;auth=db=storage=null;await loadModules(cfg);showToast(t('connectOk'));closeModal()}
+ catch(e){fb=null;db=auth=null;render();throw new Error(`${t('error')}: ${e.message||e}`)}
+}
+function showSettings(){
+ const raw=JSON.stringify(config||{apiKey:'',authDomain:'',projectId:'',storageBucket:'',messagingSenderId:'',appId:''},null,2);
+ openModal(`${modalHeader(t('settingsTitle'),t('settingsDesc'))}
+ <div class="notice warn">${esc(t('configHelp'))}</div>
+ <form id="configForm"><div class="field"><label for="firebaseJson">${esc(t('configLabel'))}</label><textarea id="firebaseJson" name="firebaseJson" dir="ltr" style="min-height:185px;font:12px/1.6 ui-monospace,monospace">${esc(raw)}</textarea><small>${esc(t('applyConfig'))}</small></div><button class="btn btn-primary" type="submit">${esc(t('connect'))}</button></form>
+ <div class="section-head"><div><h2>${esc(t('delivery'))}</h2></div></div>
+ <div class="notice"><b>1.</b> Firebase: أنشئ مشروعاً، فعّل Phone Authentication وFirestore وStorage، أضف نطاق HTTPS إلى Authorized domains، واستخدم قواعد الأمان أدناه. رمز SMS التجريبي لا يساوي دخولاً حقيقياً؛ اختبر بأرقام اختبار مخصصة أثناء التطوير فقط.</div>
+ <div class="notice"><b>2.</b> لتطبيق Android إنتاجي: اربط مشروع Firebase الأصلي بـ google-services.json وFirebase Android SDK وFCM Native. التحقق من الهاتف عبر WebView يحتاج HTTPS ونطاقاً معتمداً، وقد يتطلب إعداد App Check / reCAPTCHA. إعدادات الويب لا تُنشئ APK أو AAB تلقائياً.</div>
+ <div class="notice"><b>3.</b> المصدر هنا ملف HTML واحد. لا يحتوي هذا الرد على ملفات مشروع Gradle أو مفتاح توقيع. أنشئ Keystore محلياً محفوظاً خارج المستودع، احتفظ بنسخة مشفرة متعددة، ولا ترسل المفتاح إلى التطبيق أو ترفعه إلى Git. ابنِ APK/AAB ووقّعه من بيئة Android موثوقة بعد تجهيز الحزمة الفريدة وأيقونة 512×512 وشاشة البداية.</div>
+ <div class="notice"><b>4.</b> قبل Google Play: جهّز سياسة خصوصية مستضافة ورابط حذف الحساب ودعم المستخدم، راجع Data safety وتصنيف المحتوى والفئة المستهدفة وإفصاح الموقع/الإشعارات، اختبر إصدارات Android، وأكمل متطلبات الاختبار والنشر في Play Console. صفحات الخصوصية والشروط داخل التطبيق مسودات تتطلب مراجعة قانونية وإضافة بيانات الجهة المشغلة.</div>
+ <div class="section-head"><div><h2>${esc(t('rules'))}</h2></div></div><pre class="codebox" id="rulesCode"></pre><button class="btn btn-outline btn-small" data-act="copy-rules">${esc(t('copy'))}</button>
+ <div class="section-head"><div><h2>${esc(t('functions'))}</h2></div></div><div class="notice warn">${esc(t('functionsRequired'))} لا تضع مفاتيح Admin SDK في الواجهة. الوظائف النموذجية أدناه تخصيص بدء تشغيل، اختبرها ومراجعها قبل النشر.</div><pre class="codebox" id="functionsCode"></pre><button class="btn btn-outline btn-small" data-act="copy-functions">${esc(t('copy'))}</button>
+ <div class="section-head"><div><h2>${esc(t('sw'))}</h2></div></div><div class="notice">${esc(t('notificationsInfo'))} أنشئ firebase-messaging-sw.js بجانب الموقع، وأضف إعداد مشروع Firebase إليه ثم استخدم مفتاح Web Push VAPID. لا تُظهر الواجهة ادعاءً بأن إشعاراً أُرسل بنجاح دون نتيجة فعلية.</div>
+ <button class="btn btn-outline" data-act="admin">${esc(t('admin'))}</button>`,true);
+ $('#rulesCode').textContent=FIRESTORE_RULES;$('#functionsCode').textContent=FUNCTIONS_SAMPLE;
+}
+const FIRESTORE_RULES=`rules_version = '2';
+service cloud.firestore {
+ match /databases/{database}/documents {
+  function signed() { return request.auth != null; }
+  function admin() { return signed() && (request.auth.token.admin == true || request.auth.token.superAdmin == true); }
+  function owner(uid) { return signed() && request.auth.uid == uid; }
+  match /users/{uid} {
+   allow get: if owner(uid) || admin();
+   allow list: if admin();
+   allow create: if owner(uid) && request.resource.data.keys().hasOnly(['displayName','phoneNumber','createdAt','updatedAt']) && request.resource.data.displayName is string;
+   allow update: if owner(uid) && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['displayName','phoneNumber','updatedAt']);
+   allow delete: if false;
+   match /favorites/{id} { allow read, write: if owner(uid); }
+   match /devices/{id} { allow read, write: if owner(uid); }
+  }
+  match /listings/{id} {
+   allow read: if resource.data.status == 'approved' || (signed() && resource.data.ownerId == request.auth.uid) || admin();
+   allow create: if signed() && request.resource.data.ownerId == request.auth.uid && request.resource.data.status == 'pending' && request.resource.data.title is string && request.resource.data.title.size() <= 120;
+   allow update, delete: if admin() || (signed() && resource.data.ownerId == request.auth.uid && resource.data.status == 'pending' && request.resource.data.status == 'pending');
+   match /reviews/{uid} {
+    allow read: if true;
+    allow create: if owner(uid) && request.resource.data.userId == uid && request.resource.data.stars is int && request.resource.data.stars >= 1 && request.resource.data.stars <= 5;
+    allow update, delete: if false;
+   }
+  }
+  match /posts/{id} {
+   allow read: if resource.data.status == 'approved' || (signed() && resource.data.ownerId == request.auth.uid) || admin();
+   allow create: if signed() && request.resource.data.ownerId == request.auth.uid && request.resource.data.status == 'pending' && request.resource.data.description is string;
+   allow update, delete: if admin() || (signed() && resource.data.ownerId == request.auth.uid && resource.data.status == 'pending');
+  }
+  match /reports/{id} {
+   allow create: if signed() && request.resource.data.reporterId == request.auth.uid && request.resource.data.reason is string;
+   allow read: if admin();
+   allow update, delete: if false;
+  }
+  match /chats/{chatId} {
+   allow read: if signed() && request.auth.uid in resource.data.members;
+   allow create: if signed() && request.auth.uid in request.resource.data.members && request.resource.data.members.size() == 2;
+   allow update: if signed() && request.auth.uid in resource.data.members && request.resource.data.members == resource.data.members && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['lastMessage','lastAt']);
+   allow delete: if false;
+   match /messages/{messageId} {
+    allow read: if signed() && request.auth.uid in get(/databases/$(database)/documents/chats/$(chatId)).data.members;
+    allow create: if signed() && request.resource.data.senderId == request.auth.uid && request.auth.uid in get(/databases/$(database)/documents/chats/$(chatId)).data.members && request.resource.data.text is string && request.resource.data.text.size() <= 3000;
+    allow update, delete: if false;
+   }
+  }
+  match /adminAudit/{id} { allow read: if admin(); allow write: if false; }
+  match /{document=**} { allow read, write: if false; }
+ }
+}`;
+const FUNCTIONS_SAMPLE=`// functions/index.js — Firebase Functions v2 + Admin SDK. Deploy with least-privilege project access.
+const {onCall,HttpsError}=require('firebase-functions/v2/https');
+const {initializeApp}=require('firebase-admin/app');
+const {getFirestore,FieldValue}=require('firebase-admin/firestore');
+const {getAuth}=require('firebase-admin/auth');
+initializeApp(); const db=getFirestore();
+function requireAdmin(req, superOnly=false){
+ if(!req.auth || !(superOnly ? req.auth.token.superAdmin===true :
+    (req.auth.token.admin===true || req.auth.token.superAdmin===true)))
+   throw new HttpsError('permission-denied','Administrator claim required');
+}
+exports.adminModerate=onCall(async req=>{
+ requireAdmin(req);
+ const {collection,id,status}=req.data||{};
+ if(!['listings','posts'].includes(collection) || typeof id!=='string' ||
+    !['approved','rejected'].includes(status)) throw new HttpsError('invalid-argument','Invalid moderation request');
+ const ref=db.collection(collection).doc(id), snap=await ref.get();
+ if(!snap.exists) throw new HttpsError('not-found','Content not found');
+ await db.runTransaction(async tx=>{
+  const fresh=await tx.get(ref);
+  tx.update(ref,{status,moderatedAt:FieldValue.serverTimestamp(),moderatedBy:req.auth.uid});
+  const log=db.collection('adminAudit').doc();
+  tx.set(log,{actor:req.auth.uid,action:'moderate',collection,id,status,
+    previousStatus:fresh.get('status')||null,createdAt:FieldValue.serverTimestamp()});
+ });
+ return {ok:true};
+});
+exports.adminSetModerator=onCall(async req=>{
+ requireAdmin(req,true);
+ const {uid,enabled}=req.data||{};
+ if(typeof uid!=='string'||typeof enabled!=='boolean') throw new HttpsError('invalid-argument','Invalid request');
+ const target=await getAuth().getUser(uid), claims={...target.customClaims};
+ if(claims.superAdmin===true) throw new HttpsError('failed-precondition','Use a separate reviewed bootstrap process for Super Admin');
+ if(enabled) claims.admin=true; else delete claims.admin;
+ await getAuth().setCustomUserClaims(uid,claims);
+ await db.collection('adminAudit').add({actor:req.auth.uid,action:enabled?'grant_moderator':'revoke_moderator',target:uid,createdAt:FieldValue.serverTimestamp()});
+ return {ok:true};
+});
+// Bootstrap ONCE from a protected local/CI environment using Admin SDK credentials.
+// Find and review the intended phone-auth UID in Firebase Console first; never expose credentials.
+// await getAuth().setCustomUserClaims('REVIEWED_UID',{admin:true,superAdmin:true});
+// Then sign out/in to refresh its ID token. Keep the bootstrap operation out of public app code.`;
+async function showAuthModal(){
+ if(!isReady()){showSettings();return}
+ openModal(`${modalHeader(t('login'),t('authIntro'))}<div class="notice">${esc(t('browseOnly'))}</div>
+ <div id="authNotice"></div><form id="phoneForm"><div class="field"><label for="phone">${esc(t('phone'))}</label><input id="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+9665xxxxxxxx" required><small>${esc(t('phoneHelp'))}</small></div><div id="recaptcha-container"></div><button class="btn btn-primary" type="submit">${esc(t('sendOtp'))}</button></form>
+ <form id="otpForm" class="hidden"><div class="field"><label for="otp">${esc(t('otp'))}</label><input id="otp" inputmode="numeric" autocomplete="one-time-code" maxlength="8" required></div><button class="btn btn-primary" type="submit">${esc(t('verify'))}</button><button class="btn btn-outline" type="button" data-act="otp-back">${esc(t('cancel'))}</button></form>`);
+}
+let verifier=null,confirmation=null;
+function showProfileModal(required=false){
+ if(!user)return;
+ openModal(`${modalHeader(t('profile'),required?t('profileDesc'):t('editProfile'))}<form id="profileForm">
+ ${field(t('profileName'),'displayName',t('profileName'))}
+ <div class="notice">${esc(user.phoneNumber||'')}</div><div class="modal-actions"><button class="btn btn-primary" type="submit">${esc(t('finishProfile'))}</button>${required?'':`<button class="btn btn-outline" type="button" data-act="close">${esc(t('cancel'))}</button>`}</div></form>`);
+ $('#displayName').value=userProfile?.displayName||'';
+}
+function showCreateForm(postMode=false){
+ if(!user){showToast(t('loginNeeded'));showAuthModal();return}
+ if(!isReady()){showSettings();return}
+ selectedImage=null;
+ const options=categoryData.map(c=>`<option value="${c.id}">${esc(isAr()?c.ar:c.en)}</option>`).join('');
+ openModal(`${modalHeader(postMode?t('newPost'):t('newListing'),t('pending'))}
+ <form id="listingForm" data-post="${postMode?'1':'0'}">
+ ${postMode?'':`<div class="field"><label for="category">${esc(t('category'))}</label><select id="category" name="category">${options}</select></div>`}
+ ${field(t('postTitle'),'title',t('postTitle'),'text','maxlength="120" required')}
+ <div class="field"><label for="description">${esc(t('description'))}</label><textarea id="description" name="description" required maxlength="4000" placeholder="${esc(t('description'))}"></textarea></div>
+ ${postMode?'':`<div class="form-row">${field(t('location'),'location',t('city'))}${field(t('price'),'price',t('price'))}</div>${field(t('contactPhone'),'contactPhone',user.phoneNumber||'','tel')}
+ <div class="field"><label for="photo">${esc(t('photo'))}</label><input id="photo" type="file" accept="image/jpeg,image/png,image/webp"><small>JPEG/PNG/WebP · maximum 5 MB. Firebase Storage configuration and rules are required.</small><div id="photoPreview"></div></div>`}
+ <div class="notice">${esc(t('pending'))} — ${esc(t('moderatedDesc'))}</div><button class="btn btn-primary" type="submit">${esc(t('submit'))}</button></form>`);
+}
+async function uploadImage(file){
+ if(!file)return '';
+ if(!storage||!cachedFns)throw new Error('Storage not configured');
+ if(!/^image\/(jpeg|png|webp)$/.test(file.type)||file.size>5*1024*1024)throw new Error('الصورة يجب أن تكون JPEG أو PNG أو WebP وأقل من 5 ميغابايت.');
+ const {storageM}=cachedFns;
+ const safe=file.type==='image/png'?'png':file.type==='image/webp'?'webp':'jpg';
+ const ref=storageM.ref(storage,`listing-images/${user.uid}/${Date.now()}.${safe}`);
+ await storageM.uploadBytes(ref,file,{contentType:file.type});
+ return await storageM.getDownloadURL(ref);
+}
+async function submitListing(form){
+ if(!user||!db)return showAuthModal();
+ const {storeM}=cachedFns,fd=new FormData(form),isPost=form.dataset.post==='1';
+ const title=String(fd.get('title')||'').trim(),description=String(fd.get('description')||'').trim();
+ if(title.length<2||description.length<2)throw new Error('أدخل عنواناً وتفاصيل واضحة.');
+ const file=$('#photo')?.files?.[0];let imageUrl='';
+ if(file)imageUrl=await uploadImage(file);
+ const docData={title,description,ownerId:user.uid,ownerName:userProfile?.displayName||user.phoneNumber||'',status:'pending',createdAt:storeM.serverTimestamp()};
+ if(isPost){await storeM.addDoc(storeM.collection(db,'posts'),docData);showToast(t('postSent'))}
+ else {
+  Object.assign(docData,{category:String(fd.get('category')||'services'),location:String(fd.get('location')||'').trim(),price:String(fd.get('price')||'').trim(),contactPhone:String(fd.get('contactPhone')||'').trim(),imageUrl});
+  await storeM.addDoc(storeM.collection(db,'listings'),docData);showToast(t('listingSent'))
+ }
+ closeModal();
+}
+async function toggleFavorite(id){
+ const {storeM}=cachedFns||{};if(!id)return;
+ if(savedIds.has(id)){savedIds.delete(id);showToast(t('unsaved'))}else{savedIds.add(id);showToast(t('saved'))}
+ localStorage.setItem('najran_favs',JSON.stringify([...savedIds]));render();
+ if(user&&db&&storeM){try{const ref=storeM.doc(db,'users',user.uid,'favorites',id);if(savedIds.has(id))await storeM.setDoc(ref,{listingId:id,createdAt:storeM.serverTimestamp()});else await storeM.deleteDoc(ref)}catch(e){console.warn('favorite sync',e)}}
+}
+function findContent(id){return listings.find(x=>x.id===id)||posts.find(x=>x.id===id)}
+function showDetail(id){
+ const x=findContent(id);if(!x)return;
+ currentDetail=x;
+ openModal(`${modalHeader(x.title||t('show'),catName(x.category))}
+ ${x.imageUrl?`<img class="image-preview" src="${esc(x.imageUrl)}" alt="${esc(x.title||'')}" onerror="this.alt='${esc(t('emptyImage'))}';this.hidden=true">`:''}
+ <p class="legal">${esc(x.description||'')}</p>
+ <div class="meta"><span>${icon('pin')} ${esc(x.location||t('city'))}</span>${x.price?`<span>${esc(x.price)}</span>`:''}<span>${esc(timeText(x.createdAt))}</span></div>
+ ${x.contactPhone?`<div class="notice">${esc(t('contactPhone'))}: <a href="tel:${esc(x.contactPhone)}">${esc(x.contactPhone)}</a></div>`:''}
+ <div class="modal-actions"><button class="btn btn-outline" data-act="favorite" data-id="${esc(id)}">${esc(savedIds.has(id)?t('removeFavorite'):t('favorite'))}</button>
+ ${x.location?`<a class="btn btn-outline" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(x.location+' Najran')}">${esc(t('map'))}</a>`:''}
+ ${x.ownerId!==user?.uid?`<button class="btn btn-primary" data-act="chat" data-id="${esc(id)}">${esc(t('contact'))}</button>`:''}</div>
+ <div class="modal-actions"><button class="btn btn-outline" data-act="report" data-id="${esc(id)}" data-type="${x.category==='community'?'post':'listing'}">${esc(t('report'))}</button>${x.category!=='community'?`<button class="btn btn-outline" data-act="review" data-id="${esc(id)}">${esc(t('review'))}</button>`:''}</div>
+ <div id="reviewsArea"></div>`);
+}
+async function openChatWith(targetId,targetName=''){
+ if(!user){showToast(t('loginNeeded'));showAuthModal();return}
+ if(!db||!cachedFns){showSettings();return}
+ if(!targetId||targetId===user.uid){showToast(t('chatError'));return}
+ const {storeM}=cachedFns;
+ const members=[user.uid,targetId].sort();const chatId=members.join('__');const ref=storeM.doc(db,'chats',chatId);
+ try{
+  const snap=await storeM.getDoc(ref);
+  const names={...(snap.exists()?snap.data().memberNames||{}:{})};
+  names[user.uid]=userProfile?.displayName||user.phoneNumber||'';
+  if(targetName)names[targetId]=targetName;
+  if(!snap.exists())await storeM.setDoc(ref,{members,memberNames:names,createdAt:storeM.serverTimestamp(),lastMessage:'',lastAt:storeM.serverTimestamp()});
+  else await storeM.updateDoc(ref,{memberNames:names});
+  currentChat={id:chatId,otherId:targetId,name:targetName||names[targetId]||targetId.slice(0,10)};
+  showChatModal();
+ }catch(e){console.error(e);showToast(`${t('chatError')}: ${e.message||''}`)}
+}
+function showChatModal(){
+ if(!currentChat)return;
+ openModal(`${modalHeader(currentChat.name,t('messagesTitle'))}<div class="chat-window" id="chatMessages"></div><form id="chatForm" class="chat-form"><input name="message" maxlength="3000" placeholder="${esc(t('enterMessage'))}" required><button class="btn btn-primary" type="submit">${esc(t('send'))}</button></form>`);
+ const {storeM}=cachedFns;const q=storeM.query(storeM.collection(db,'chats',currentChat.id,'messages'),storeM.orderBy('createdAt','asc'),storeM.limit(100));
+ chatUnsub=storeM.onSnapshot(q,s=>{
+  const box=$('#chatMessages');if(!box)return;
+  box.innerHTML=s.docs.map(d=>{const m=d.data();return `<div class="bubble ${m.senderId===user.uid?'mine':''}">${esc(m.text)}<time>${esc(timeText(m.createdAt))}</time></div>`}).join('');
+  box.scrollTop=box.scrollHeight;
+ },e=>{console.warn(e);const box=$('#chatMessages');if(box)box.innerHTML=`<div class="notice error">${esc(t('noPermission'))}</div>`});
+}
+async function sendMessage(form){
+ if(!currentChat||!user)return;
+ const fd=new FormData(form),text=String(fd.get('message')||'').trim();if(!text)return;
+ const {storeM}=cachedFns,chatRef=storeM.doc(db,'chats',currentChat.id);
+ const msg={senderId:user.uid,text,createdAt:storeM.serverTimestamp()};
+ await storeM.addDoc(storeM.collection(db,'chats',currentChat.id,'messages'),msg);
+ await storeM.updateDoc(chatRef,{lastMessage:text.slice(0,100),lastAt:storeM.serverTimestamp()});
+ form.reset();
+}
+async function startChatFor(id){
+ const x=findContent(id);if(!x)return;
+ if(!x.ownerId){showToast(t('chatError'));return}
+ await openChatWith(x.ownerId,x.ownerName||'');
+}
+function showReport(id,type){
+ if(!user){showToast(t('loginNeeded'));showAuthModal();return}
+ openModal(`${modalHeader(t('report'),t('reportReason'))}<form id="reportForm" data-id="${esc(id)}" data-type="${esc(type||'listing')}"><div class="field"><label for="reason">${esc(t('reportReason'))}</label><textarea id="reason" name="reason" maxlength="1500" required></textarea></div><button class="btn btn-primary" type="submit">${esc(t('send'))}</button></form>`);
+}
+function showReview(id){
+ if(!user){showToast(t('loginNeeded'));showAuthModal();return}
+ openModal(`${modalHeader(t('review'),t('reviewText'))}<form id="reviewForm" data-id="${esc(id)}">
+ <div class="field"><label for="stars">${esc(t('stars'))}</label><select id="stars" name="stars"><option value="5">5 ★</option><option value="4">4 ★</option><option value="3">3 ★</option><option value="2">2 ★</option><option value="1">1 ★</option></select></div>
+ <div class="field"><label for="reviewText">${esc(t('reviewText'))}</label><textarea id="reviewText" name="text" maxlength="1500" required></textarea></div><button class="btn btn-primary" type="submit">${esc(t('send'))}</button></form>`);
+}
+async function saveReport(form){
+ const id=form.dataset.id;const reason=String(new FormData(form).get('reason')||'').trim();if(!reason)return;
+ const {storeM}=cachedFns;
+ await storeM.addDoc(storeM.collection(db,'reports'),{targetId:id,targetType:form.dataset.type,reason,reporterId:user.uid,status:'open',createdAt:storeM.serverTimestamp()});
+ closeModal();showToast(t('reportSent'));
+}
+async function saveReview(form){
+ const id=form.dataset.id,fd=new FormData(form),{storeM}=cachedFns;
+ await storeM.setDoc(storeM.doc(db,'listings',id,'reviews',user.uid),{userId:user.uid,stars:Number(fd.get('stars')),text:String(fd.get('text')||'').trim(),createdAt:storeM.serverTimestamp()});
+ closeModal();showToast(t('reviewSent'));
+}
+async function saveProfile(form){
+ const name=String(new FormData(form).get('displayName')||'').trim();if(name.length<2)throw new Error('اكتب اسماً من حرفين على الأقل.');
+ const {storeM}=cachedFns;
+ await storeM.setDoc(storeM.doc(db,'users',user.uid),{displayName:name,phoneNumber:user.phoneNumber||'',updatedAt:storeM.serverTimestamp(),...(userProfile?.displayName?{}:{createdAt:storeM.serverTimestamp()})},{merge:true});
+ userProfile={...(userProfile||{}),displayName:name};closeModal();render();showToast(t('save'));
+}
+async function initVerifier(targetAuth,containerId){
+ const {authM}=cachedFns;
+ if(!authM)return null;
+ if(verifier){try{verifier.clear()}catch{}verifier=null}
+ verifier=new authM.RecaptchaVerifier(targetAuth,containerId,{size:'invisible',callback:()=>{}});
+ await verifier.render();return verifier;
+}
+async function sendOtp(phone,admin=false){
+ if(!/^\+[1-9]\d{7,14}$/.test(phone))throw new Error(t('phoneHelp'));
+ const target=admin?adminAuth:auth;
+ const vr=await initVerifier(target,admin?'admin-recaptcha':'recaptcha-container');
+ const {authM}=cachedFns;confirmation=await authM.signInWithPhoneNumber(target,phone,vr);
+ if(admin){$('#adminOtpForm')?.classList.remove('hidden');$('#adminPhoneForm')?.classList.add('hidden');showToast(t('otp'))}
+ else{$('#otpForm')?.classList.remove('hidden');$('#phoneForm')?.classList.add('hidden');showToast(t('otp'))}
+}
+async function verifyOtp(code,admin=false){
+ if(!confirmation)throw new Error(t('error'));
+ const result=await confirmation.confirm(code);confirmation=null;
+ if(!admin){user=result.user;closeModal();render();return}
+ await inspectAdmin(result.user);
+}
+async function inspectAdmin(u){
+ adminUser=u;
+ try{
+  const {authM}=cachedFns;const token=await authM.getIdTokenResult(u,true);
+  if(token.claims.admin!==true&&token.claims.superAdmin!==true){await authM.signOut(adminAuth);adminUser=null;$('#adminArea').innerHTML=`<div class="notice error">${esc(t('adminDenied'))}</div>`;return}
+  $('#adminArea').innerHTML=adminDashboardShell();await loadAdminData();
+ }catch(e){console.error(e);$('#adminArea').innerHTML=`<div class="notice error">${esc(t('error'))}: ${esc(e.message||'')}</div>`}
+}
+function adminDashboardShell(){
+ return `<div class="admin-shell"><div class="row-main"><span class="avatar">${icon('shield')}</span><div><strong>${esc(t('adminDashboard'))}</strong><small>${esc(adminUser?.phoneNumber||'')} · ${adminUser?.uid===' '?'': ''}</small></div></div>
+ <div class="stat-grid" id="adminStats"><div class="stat"><b>—</b><span>${esc(t('pendingList'))}</span></div><div class="stat"><b>—</b><span>${esc(t('reports'))}</span></div><div class="stat"><b>—</b><span>${esc(t('users'))}</span></div></div>
+ <div class="notice warn">${esc(t('functionsRequired'))}</div><button class="btn btn-outline btn-small" data-act="admin-refresh">${esc(t('refresh'))}</button>
+ <h3>${esc(t('pendingList'))}</h3><div id="adminListings"></div><h3>${esc(t('reports'))}</h3><div id="adminReports"></div>
+ ${tokenSuperAdmin()?`<h3>${esc(t('adminSetup'))}</h3><div class="notice">${esc(t('adminSetupDesc'))}</div><form id="moderatorForm">${field('UID','targetUid','Firebase Auth UID')}<label><input type="checkbox" name="enabled" checked> ${esc('منح صلاحية مشرف')}</label><button class="btn btn-outline" type="submit">${esc(t('save'))}</button></form>`:''}
+ <button class="btn btn-outline" data-act="admin-logout">${esc(t('logout'))}</button></div>`;
+}
+function tokenSuperAdmin(){return !!adminUser?.__superAdmin}
+async function loadAdminData(){
+ if(!adminUser||!cachedFns)return;
+ const {authM,storeM}=cachedFns,token=await authM.getIdTokenResult(adminUser,true);adminUser.__superAdmin=token.claims.superAdmin===true;
+ if(token.claims.admin!==true&&!adminUser.__superAdmin)throw new Error(t('adminDenied'));
+ const ql=await storeM.getDocs(storeM.query(storeM.collection(adminDb,'listings'),storeM.limit(100)));
+ const qp=await storeM.getDocs(storeM.query(storeM.collection(adminDb,'posts'),storeM.limit(100)));
+ const qr=await storeM.getDocs(storeM.query(storeM.collection(adminDb,'reports'),storeM.limit(100)));
+ const qu=adminUser.__superAdmin?await storeM.getDocs(storeM.query(storeM.collection(adminDb,'users'),storeM.limit(100))):null;
+ const all=[...ql.docs.map(d=>({id:d.id,...d.data(),kind:'listings'})),...qp.docs.map(d=>({id:d.id,...d.data(),kind:'posts'}))];
+ const pending=all.filter(x=>x.status==='pending');
+ $('#adminStats').innerHTML=`<div class="stat"><b>${pending.length}</b><span>${esc(t('pendingList'))}</span></div><div class="stat"><b>${qr.size}</b><span>${esc(t('reports'))}</span></div><div class="stat"><b>${qu?qu.size:'—'}</b><span>${esc(t('users'))}</span></div>`;
+ $('#adminListings').innerHTML=pending.length?pending.map(x=>`<div class="item-row"><span><strong>${esc(x.title||x.description?.slice(0,70)||'')}</strong><small>${esc(x.kind)} · ${esc(x.ownerId||'')} · ${esc(timeText(x.createdAt))}</small></span><span><button class="btn btn-primary btn-small" data-act="moderate" data-id="${esc(x.id)}" data-kind="${esc(x.kind)}" data-status="approved">${esc(t('approve'))}</button><button class="btn btn-danger btn-small" data-act="moderate" data-id="${esc(x.id)}" data-kind="${esc(x.kind)}" data-status="rejected">${esc(t('reject'))}</button></span></div>`).join(''):emptyBox(t('nothing'),t('nothingDesc'));
+ $('#adminReports').innerHTML=qr.size?qr.docs.map(d=>{const x=d.data();return `<div class="item-row"><span><strong>${esc(x.reason||'')}</strong><small>${esc(x.targetType||'')} · ${esc(x.targetId||'')} · ${esc(x.status||'')}</small></span></div>`}).join(''):emptyBox(t('nothing'),t('nothingDesc'));
+}
+async function adminLoginPhone(phone){
+ if(!config)throw new Error(t('disconnected'));
+ if(!adminAuth){
+  const {appM,authM,storeM,functionsM}=cachedFns;
+  const adminApp=appM.initializeApp(config,'najran-admin-portal');
+  adminAuth=authM.getAuth(adminApp);adminDb=storeM.getFirestore(adminApp);adminFunctions=functionsM.getFunctions(adminApp,'us-central1');
+ }
+ await sendOtp(phone,true);
+}
+function showAdmin(){
+ if(!config||!cachedFns){showSettings();return}
+ openModal(`${modalHeader(t('adminTitle'),t('adminDesc'))}<div id="adminArea">
+ <div class="notice warn">${esc(t('adminSetupDesc'))}</div><div id="adminNotice"></div>
+ <form id="adminPhoneForm"><div class="field"><label for="adminPhone">${esc(t('phone'))}</label><input id="adminPhone" type="tel" inputmode="tel" placeholder="+9665xxxxxxxx" required></div><div id="admin-recaptcha"></div><button class="btn btn-primary" type="submit">${esc(t('sendOtp'))}</button></form>
+ <form id="adminOtpForm" class="hidden"><div class="field"><label for="adminOtp">${esc(t('adminOtp'))}</label><input id="adminOtp" inputmode="numeric" autocomplete="one-time-code" required></div><button class="btn btn-primary" type="submit">${esc(t('adminLogin'))}</button></form>
+ </div>`,true);
+}
+function showLegal(which){
+ openModal(`${modalHeader(t(which))}<div class="legal">${esc(t(which==='privacy'?'privacyText':'termsText'))}</div>`);
+}
+async function enableNotifications(){
+ if(!user||!db){showToast(t('loginNeeded'));return}
+ if(!('serviceWorker'in navigator)||!('Notification'in window)){showToast(t('notificationsInfo'));return}
+ try{
+  const permission=await Notification.requestPermission();if(permission!=='granted'){showToast(isAr()?'لم تمنح إذن الإشعارات.':'Notification permission was not granted.');return}
+  const vapid=prompt(t('vapid'));if(!vapid){showToast(t('notificationsInfo'));return}
+  const messaging=await import('https://www.gstatic.com/firebasejs/10.12.5/firebase-messaging.js');
+  if(!await messaging.isSupported()){showToast(t('notificationsInfo'));return}
+  const reg=await navigator.serviceWorker.register('/firebase-messaging-sw.js');
+  const msg=messaging.getMessaging(fb);
+  const token=await messaging.getToken(msg,{vapidKey:vapid,serviceWorkerRegistration:reg});
+  if(!token)throw new Error('FCM token unavailable');
+  const {storeM}=cachedFns;await storeM.setDoc(storeM.doc(db,'users',user.uid,'devices',encodeURIComponent(token)),{token,updatedAt:storeM.serverTimestamp()});
+  showToast(isAr()?'تم تسجيل الجهاز للإشعارات.':'Device registered for notifications.');
+ }catch(e){console.error(e);showToast(`${t('error')}: ${e.message||''}`)}
+}
+async function copyText(text){try{await navigator.clipboard.writeText(text);showToast(t('copied'))}catch{if(window.AndroidAPI?.copyToClipboard){AndroidAPI.copyToClipboard(text);showToast(t('copied'))}else showToast(isAr()?'تعذر النسخ. حدّد النص وانسخه يدوياً.':'Copy failed. Select and copy the text manually.')}}
+async function callAdmin(name,data){
+ if(!adminFunctions||!fnModule)throw new Error(t('functionsRequired'));
+ const call=fnModule.httpsCallable(adminFunctions,name);
+ return await call(data);
+}
+document.addEventListener('click',async e=>{
+ const b=e.target.closest('[data-act]');if(!b)return;
+ const act=b.dataset.act;
+ try{
+  if(act==='backdrop'&&e.target===b){closeModal();return}
+  if(act==='close'){closeModal();return}
+  if(act==='theme'){theme=theme==='dark'?'light':'dark';localStorage.setItem('najran_theme',theme);applyTheme();return}
+  if(act==='language'){lang=lang==='ar'?'en':'ar';localStorage.setItem('najran_lang',lang);render();return}
+  if(act==='nav'){changeTab(b.dataset.tab);return}
+  if(act==='category'){activeCategory=b.dataset.category;query='';changeTab('explore');return}
+  if(act==='account'){if(user){changeTab('profile')}else await showAuthModal();return}
+  if(act==='settings'){showSettings();return}
+  if(act==='privacy'||act==='terms'){showLegal(act);return}
+  if(act==='create'){showCreateForm(false);return}
+  if(act==='create-post'){showCreateForm(true);return}
+  if(act==='detail'){showDetail(b.dataset.id);return}
+  if(act==='favorite'){await toggleFavorite(b.dataset.id);if(currentDetail?.id===b.dataset.id)showDetail(b.dataset.id);return}
+  if(act==='chat'){await startChatFor(b.dataset.id);return}
+  if(act==='open-chat'){
+   const c=chatRows.find(x=>x.id===b.dataset.chat);const other=(c?.members||[]).find(m=>m!==user?.uid);
+   currentChat={id:b.dataset.chat,otherId:other,name:c?.memberNames?.[other]||other?.slice(0,10)||''};showChatModal();return
+  }
+  if(act==='report'){showReport(b.dataset.id,b.dataset.type);return}
+  if(act==='review'){showReview(b.dataset.id);return}
+  if(act==='edit-profile'){showProfileModal(false);return}
+  if(act==='logout'){if(auth)await cachedFns.authM.signOut(auth);changeTab('home');showToast(t('logout'));return}
+  if(act==='otp-back'){$('#otpForm')?.classList.add('hidden');$('#phoneForm')?.classList.remove('hidden');confirmation=null;if(verifier){try{verifier.clear()}catch{}verifier=null}return}
+  if(act==='admin'){showAdmin();return}
+  if(act==='admin-refresh'){await loadAdminData();return}
+  if(act==='admin-logout'){if(adminAuth)await cachedFns.authM.signOut(adminAuth);adminUser=null;showAdmin();return}
+  if(act==='moderate'){
+   b.disabled=true;await callAdmin('adminModerate',{collection:b.dataset.kind,id:b.dataset.id,status:b.dataset.status});showToast(t('save'));await loadAdminData();return
+  }
+  if(act==='copy-rules'){await copyText(FIRESTORE_RULES);return}
+  if(act==='copy-functions'){await copyText(FUNCTIONS_SAMPLE);return}
+  if(act==='notifications'){await enableNotifications();return}
+ }catch(err){console.error(err);showToast(`${t('error')}: ${err?.message||err}`)}
+});
+document.addEventListener('submit',async e=>{
+ const f=e.target;if(!(f instanceof HTMLFormElement))return;
+ e.preventDefault();
+ try{
+  if(f.id==='configForm'){await configureFirebase($('#firebaseJson').value);return}
+  if(f.id==='phoneForm'){await sendOtp($('#phone').value.trim());return}
+  if(f.id==='otpForm'){await verifyOtp($('#otp').value.trim());return}
+  if(f.id==='profileForm'){await saveProfile(f);return}
+  if(f.id==='listingForm'){const btn=f.querySelector('[type=submit]');btn.disabled=true;await submitListing(f);return}
+  if(f.id==='reportForm'){await saveReport(f);return}
+  if(f.id==='reviewForm'){await saveReview(f);return}
+  if(f.id==='chatForm'){await sendMessage(f);return}
+  if(f.id==='adminPhoneForm'){await adminLoginPhone($('#adminPhone').value.trim());return}
+  if(f.id==='adminOtpForm'){const {authM}=cachedFns;const result=await confirmation.confirm($('#adminOtp').value.trim());confirmation=null;await inspectAdmin(result.user);return}
+  if(f.id==='moderatorForm'){
+   const fd=new FormData(f),uid=String(fd.get('targetUid')||'').trim(),enabled=f.querySelector('[name="enabled"]').checked;
+   if(!uid)throw new Error('UID مطلوب');
+   await callAdmin('adminSetModerator',{uid,enabled});showToast(t('save'));await loadAdminData();return
+  }
+ }catch(err){console.error(err);showToast(`${t('error')}: ${err?.message||err}`)}
+});
+document.addEventListener('change',e=>{
+ if(e.target.id==='photo'&&e.target.files?.[0]){
+  const file=e.target.files[0];
+  if(file.size>5*1024*1024){e.target.value='';showToast('حجم الصورة أكبر من 5 ميغابايت.');return}
+  if(!file.type.startsWith('image/')){e.target.value='';showToast('الملف ليس صورة.');return}
+  const url=URL.createObjectURL(file);const prev=$('#photoPreview');if(prev){prev.innerHTML=`<img class="image-preview" src="${url}" alt="معاينة الصورة">`;prev.querySelector('img').onload=()=>URL.revokeObjectURL(url)}
+ }
+});
+window.addEventListener('keydown',e=>{if(e.key==='Escape'&&$('#modalRoot').firstElementChild)closeModal()});
+applyTheme();
+const savedConfig=localStorage.getItem('najran_firebase_config');
+if(savedConfig){try{config=JSON.parse(savedConfig);loadModules(config).catch(e=>{console.error(e);fb=null;render();showToast(`${t('error')}: ${e.message||''}`)})}catch(e){console.warn('Saved Firebase config invalid',e)}}
+render();
+</script>
+</body>
+</html>
