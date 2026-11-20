@@ -638,11 +638,14 @@ async function initVerifier(targetAuth,containerId){
 }
 async function sendOtp(phone,admin=false){
  if(!/^\+[1-9]\d{7,14}$/.test(phone))throw new Error(t('phoneHelp'));
+ if(window.__sendingOtp)return;window.__sendingOtp=true;
+ try{
  const target=admin?adminAuth:auth;
  const vr=await initVerifier(target,admin?'admin-recaptcha':'recaptcha-container');
  const {authM}=cachedFns;confirmation=await authM.signInWithPhoneNumber(target,phone,vr);
  if(admin){$('#adminOtpForm')?.classList.remove('hidden');$('#adminPhoneForm')?.classList.add('hidden');showToast(t('otp'))}
  else{$('#otpForm')?.classList.remove('hidden');$('#phoneForm')?.classList.add('hidden');showToast(t('otp'))}
+ }finally{window.__sendingOtp=false}
 }
 async function verifyOtp(code,admin=false){
  if(!confirmation)throw new Error(t('error'));
