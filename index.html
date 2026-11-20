@@ -632,6 +632,7 @@ async function initVerifier(targetAuth,containerId){
  const {authM}=cachedFns;
  if(!authM)return null;
  if(verifier){try{verifier.clear()}catch{}verifier=null}
+ const el=document.getElementById(containerId);if(el)el.innerHTML='';
  verifier=new authM.RecaptchaVerifier(targetAuth,containerId,{size:'invisible',callback:()=>{}});
  await verifier.render();return verifier;
 }
