@@ -791,7 +791,7 @@ document.addEventListener('change',e=>{
 });
 window.addEventListener('keydown',e=>{if(e.key==='Escape'&&$('#modalRoot').firstElementChild)closeModal()});
 applyTheme();
-const savedConfig=localStorage.getItem('najran_firebase_config');
+const DEFAULT_CONFIG={apiKey:'AIzaSyByxag4cfFcn_8VTz7aVytodbq4a5C6_xA',authDomain:'najran-community.firebaseapp.com',projectId:'najran-community',storageBucket:'najran-community.firebasestorage.app',messagingSenderId:'275319126547',appId:'1:275319126547:web:fca775e8420fded42a9de6'}; const savedConfig=localStorage.getItem('najran_firebase_config')||JSON.stringify(DEFAULT_CONFIG);
 if(savedConfig){try{config=JSON.parse(savedConfig);loadModules(config).catch(e=>{console.error(e);fb=null;render();showToast(`${t('error')}: ${e.message||''}`)})}catch(e){console.warn('Saved Firebase config invalid',e)}}
 render();
 </script>
