@@ -524,7 +524,7 @@ function showCreateForm(postMode=false){
  ${field(t('postTitle'),'title',t('postTitle'),'text','maxlength="120" required')}
  <div class="field"><label for="description">${esc(t('description'))}</label><textarea id="description" name="description" required maxlength="4000" placeholder="${esc(t('description'))}"></textarea></div>
  ${postMode?'':`<div class="form-row">${field(t('location'),'location',t('city'))}${field(t('price'),'price',t('price'))}</div>${field(t('contactPhone'),'contactPhone',user.phoneNumber||'','tel')}
- <div class="field"><label for="photo">${esc(t('photo'))}</label><input id="photo" type="file" accept="image/jpeg,image/png,image/webp"><small>JPEG/PNG/WebP · maximum 5 MB. Firebase Storage configuration and rules are required.</small><div id="photoPreview"></div></div>`}
+ <div class="field"><label for="photo">${esc(t('photo'))}</label><input id="photo" type="file" accept="image/jpeg,image/png,image/webp"><small>${isAr()?'اختياري · JPEG/PNG/WebP · حتى 5 ميغابايت. إذا فشل رفع الصورة سيُرسل الإعلان بدونها.':'Optional · JPEG/PNG/WebP · up to 5 MB. If the photo upload fails, the listing will be sent without it.'}</small><div id="photoPreview"></div></div>`}
  <div class="notice">${esc(t('pending'))} — ${esc(t('moderatedDesc'))}</div><button class="btn btn-primary" type="submit">${esc(t('submit'))}</button></form>`);
 }
 async function uploadImage(file){
@@ -542,13 +542,13 @@ async function submitListing(form){
  const {storeM}=cachedFns,fd=new FormData(form),isPost=form.dataset.post==='1';
  const title=String(fd.get('title')||'').trim(),description=String(fd.get('description')||'').trim();
  if(title.length<2||description.length<2)throw new Error('أدخل عنواناً وتفاصيل واضحة.');
- const file=$('#photo')?.files?.[0];let imageUrl='';
- if(file)imageUrl=await uploadImage(file);
+ const file=$('#photo')?.files?.[0];let imageUrl='';let photoFailed=false;
+ if(file){try{imageUrl=await uploadImage(file)}catch(e){console.warn('photo upload failed, submitting without photo',e);photoFailed=true}}
  const docData={title,description,ownerId:user.uid,ownerName:userProfile?.displayName||user.phoneNumber||'',status:'pending',createdAt:storeM.serverTimestamp()};
  if(isPost){await storeM.addDoc(storeM.collection(db,'posts'),docData);showToast(t('postSent'))}
  else {
   Object.assign(docData,{category:String(fd.get('category')||'services'),location:String(fd.get('location')||'').trim(),price:String(fd.get('price')||'').trim(),contactPhone:String(fd.get('contactPhone')||'').trim(),imageUrl});
-  await storeM.addDoc(storeM.collection(db,'listings'),docData);showToast(t('listingSent'))
+  await storeM.addDoc(storeM.collection(db,'listings'),docData);showToast(photoFailed?(isAr()?'تم الإرسال بدون صورة لأن رفع الصورة لم ينجح.':'Sent without photo because the photo upload failed.'):t('listingSent'))
  }
  closeModal();
 }
@@ -785,7 +785,7 @@ document.addEventListener('submit',async e=>{
   if(f.id==='configForm'){await configureFirebase($('#firebaseJson').value);return}
   if(f.id==='emailForm'){await emailAuth($('#email').value.trim(),$('#password').value,e.submitter?.dataset.mode==='up');return}
   if(f.id==='profileForm'){await saveProfile(f);return}
-  if(f.id==='listingForm'){const btn=f.querySelector('[type=submit]');btn.disabled=true;await submitListing(f);return}
+  if(f.id==='listingForm'){const btn=f.querySelector('[type=submit]');btn.disabled=true;try{await submitListing(f)}finally{btn.disabled=false}return}
   if(f.id==='reportForm'){await saveReport(f);return}
   if(f.id==='reviewForm'){await saveReview(f);return}
   if(f.id==='chatForm'){await sendMessage(f);return}
